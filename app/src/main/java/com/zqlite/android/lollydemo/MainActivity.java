@@ -21,18 +21,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Logly logly = Logly.own();
-        logly.setGlobalTag(new Logly.Tag( Logly.FLAG_THREAD_NAME,"scott",Logly.DEBUG));
+        Logly.setGlobalTag(new Logly.Tag( Logly.FLAG_THREAD_NAME,"scott",Logly.DEBUG));
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                logly.d(new Logly.Tag(Logly.FLAG_NONE,"ssssss",Logly.DEBUG),"  cus");
-                logly.v("    v");
-                logly.i("    i");
-                logly.d("    d");
-                logly.w("    w");
-                logly.e("    e");
+                Logly.d(new Logly.Tag(Logly.FLAG_NONE,"ssssss",Logly.DEBUG),"  cus");
+                Logly.v("    v");
+                Logly.i("    i");
+                Logly.d("    d");
+                Logly.w("    w");
+                Logly.e("    e");
                 handler.postDelayed(this,1000);
             }
         });

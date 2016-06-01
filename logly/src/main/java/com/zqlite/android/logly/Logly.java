@@ -5,7 +5,7 @@ import android.util.Log;
 /**
  * @author qinglian.zhang
  */
-public class Logly implements Interface {
+public class Logly {
 
     public static final int FLAG_NONE = 0x000;
 
@@ -21,89 +21,77 @@ public class Logly implements Interface {
 
     public static final int ERROR = Log.ERROR;
 
-    private Tag tag = new Tag(FLAG_NONE,Logly.class.getSimpleName(),VERBOSE);
+    private static Tag sTag = new Tag(FLAG_NONE,Logly.class.getSimpleName(),VERBOSE);
 
     private static Logly sInstance;
 
     private Logly(){}
 
-    public synchronized static final Logly own(){
-        if(sInstance == null){
-            sInstance = new Logly();
+    public static void setGlobalTag(Tag tag){
+        sTag = tag;
+    }
+
+    public static void v(String msg){
+        if(sTag.level <= VERBOSE){
+            Log.v(sTag.tag,getExtraInfoWithTag(sTag,msg));
         }
-        return sInstance;
     }
 
-    public void setGlobalTag(Tag tag){
-        this.tag = tag;
-    }
-
-    public void v(String msg){
+    public static void v(Tag tag, String msg) {
         if(tag.level <= VERBOSE){
             Log.v(tag.tag,getExtraInfoWithTag(tag,msg));
         }
     }
 
-    @Override
-    public void v(Tag tag, String msg) {
-        if(tag.level <= VERBOSE){
-            Log.v(tag.tag,getExtraInfoWithTag(tag,msg));
+    public static void d(String msg){
+        if(sTag.level <= DEBUG){
+            Log.d(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
-    public void d(String msg){
+    public static void d(Tag tag, String msg) {
         if(tag.level <= DEBUG){
             Log.d(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
-    @Override
-    public void d(Tag tag, String msg) {
-        if(tag.level <= DEBUG){
-            Log.d(tag.tag, getExtraInfoWithTag(tag,msg));
+    public static void i(String msg){
+        if(sTag.level <= INFO){
+            Log.i(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
-    public void i(String msg){
+    public static void i(Tag tag, String msg) {
         if(tag.level <= INFO){
             Log.i(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
-    @Override
-    public void i(Tag tag, String msg) {
-        if(tag.level <= INFO){
-            Log.i(tag.tag, getExtraInfoWithTag(tag,msg));
+    public static void w(String msg){
+        if(sTag.level <= WARN){
+            Log.w(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
-    public void w(String msg){
+    public static void w(Tag tag, String msg) {
         if(tag.level <= WARN){
             Log.w(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
-    @Override
-    public void w(Tag tag, String msg) {
-        if(tag.level <= WARN){
-            Log.w(tag.tag, getExtraInfoWithTag(tag,msg));
+    public static void e(String msg){
+        if(sTag.level <= ERROR){
+            Log.e(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
-    public void e(String msg){
+    public static void e(Tag tag, String msg) {
         if(tag.level <= ERROR){
             Log.e(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
-    @Override
-    public void e(Tag tag, String msg) {
-        if(tag.level <= ERROR){
-            Log.e(tag.tag, getExtraInfoWithTag(tag,msg));
-        }
-    }
-
-    private String getExtraInfoWithTag(Tag tag,String msg){
+    private static String getExtraInfoWithTag(Tag tag,String msg){
         if(tag.flag == FLAG_NONE){
             return msg;
         }
