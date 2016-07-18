@@ -9,7 +9,7 @@ Add the library to your module **build.gradle**:
 
 ```gradle
 dependencies {
-    compile compile 'com.zql.android:logly:1.1'
+    compile 'com.zql.android:logly:1.1'
 }
 ```
 # usage
