@@ -9,7 +9,7 @@ Add the library to your module **build.gradle**:
 
 ```gradle
 dependencies {
-    compile 'com.zql.android:logly:1.1'
+    compile 'com.zql.android:logly:1.2'
 }
 ```
 # usage
@@ -26,6 +26,11 @@ Logly.e("    e"); //show
 2. Partial Tag
 ```java
 Logly.d(new Logly.Tag(Logly.FLAG_NONE,"logly",Logly.DEBUG),"     d");
+```
+
+3. hide log output
+```java
+Logly.d(new Logly.Tag(Logly.FLAG_INVISIBLE,"logly",Logly.DEBUG),"     d");
 ```
 #License
 
