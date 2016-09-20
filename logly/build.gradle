@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 23
@@ -24,9 +26,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
 }
 
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-version = "1.1"
+
+version = "1.2"
 
 def siteUrl = 'https://github.com/ZhangQinglian/LoglyDemo'// project homepage
 def gitUrl = 'https://github.com/ZhangQinglian/LoglyDemo.git'// project git

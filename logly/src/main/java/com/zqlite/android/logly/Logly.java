@@ -11,6 +11,8 @@ public class Logly {
 
     public static final int FLAG_THREAD_NAME = 0x001;
 
+    public static final int FLAG_INVISIBLE = 0x002;
+
     public static final int VERBOSE = Log.VERBOSE;
 
     public static final int DEBUG = Log.DEBUG;
@@ -32,67 +34,67 @@ public class Logly {
     }
 
     public static void v(String msg){
-        if(sTag.level <= VERBOSE){
+        if(sTag.level <= VERBOSE && ((sTag.flag & FLAG_INVISIBLE) == 0)){
             Log.v(sTag.tag,getExtraInfoWithTag(sTag,msg));
         }
     }
 
     public static void v(Tag tag, String msg) {
-        if(tag.level <= VERBOSE){
+        if(tag.level <= VERBOSE && ((tag.flag & FLAG_INVISIBLE) == 0)){
             Log.v(tag.tag,getExtraInfoWithTag(tag,msg));
         }
     }
 
     public static void d(String msg){
-        if(sTag.level <= DEBUG){
+        if(sTag.level <= DEBUG && ((sTag.flag & FLAG_INVISIBLE) == 0)){
             Log.d(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
     public static void d(Tag tag, String msg) {
-        if(tag.level <= DEBUG){
+        if(tag.level <= DEBUG && ((tag.flag & FLAG_INVISIBLE) == 0)){
             Log.d(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
     public static void i(String msg){
-        if(sTag.level <= INFO){
+        if(sTag.level <= INFO && ((sTag.flag & FLAG_INVISIBLE) == 0)){
             Log.i(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
     public static void i(Tag tag, String msg) {
-        if(tag.level <= INFO){
+        if(tag.level <= INFO && ((tag.flag & FLAG_INVISIBLE) == 0)){
             Log.i(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
     public static void w(String msg){
-        if(sTag.level <= WARN){
+        if(sTag.level <= WARN && ((sTag.flag & FLAG_INVISIBLE) == 0)){
             Log.w(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
     public static void w(Tag tag, String msg) {
-        if(tag.level <= WARN){
+        if(tag.level <= WARN && ((tag.flag & FLAG_INVISIBLE) == 0)){
             Log.w(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
     public static void e(String msg){
-        if(sTag.level <= ERROR){
+        if(sTag.level <= ERROR && ((sTag.flag & FLAG_INVISIBLE) == 0)){
             Log.e(sTag.tag, getExtraInfoWithTag(sTag,msg));
         }
     }
 
     public static void e(Tag tag, String msg) {
-        if(tag.level <= ERROR){
+        if(tag.level <= ERROR && ((tag.flag & FLAG_INVISIBLE) == 0)){
             Log.e(tag.tag, getExtraInfoWithTag(tag,msg));
         }
     }
 
     private static String getExtraInfoWithTag(Tag tag,String msg){
-        if(tag.flag == FLAG_NONE){
+        if(tag.flag == FLAG_NONE ){
             return msg;
         }
         StringBuilder sb = new StringBuilder("[");
